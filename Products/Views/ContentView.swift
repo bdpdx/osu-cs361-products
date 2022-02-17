@@ -16,7 +16,7 @@ struct ContentView: View {
             ProductsView()
                 .navigationBarTitle(Text("Products"), displayMode: .large)
                 .navigationBarItems(leading: NavBarLeadingView())
-                .navigationBarItems(trailing: NavBarTrailingView())
+                .navigationBarItems(trailing: NavBarTrailingView(kind: .cart))
         }
     }
 }

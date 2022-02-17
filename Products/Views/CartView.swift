@@ -93,7 +93,7 @@ struct CartView: View {
             }
         }
         .navigationBarTitle(Text("Cart"), displayMode: .inline)
-
+        .navigationBarItems(trailing: NavBarTrailingView(kind: .addRandomPokemon))
     }
 }
 

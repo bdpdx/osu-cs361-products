@@ -53,7 +53,7 @@ struct ProductDetailView: View {
         }
         .navigationBarTitle(Text("Product"), displayMode: .inline)
         .navigationBarItems(leading: NavBarLeadingView())
-        .navigationBarItems(trailing: NavBarTrailingView())
+        .navigationBarItems(trailing: NavBarTrailingView(kind: .cart))
    }
 }
 

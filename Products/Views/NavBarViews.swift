@@ -19,28 +19,40 @@ struct NavBarLeadingView: View {
 }
 
 struct NavBarTrailingView: View {
+    enum Kind {
+        case addRandomPokemon
+        case cart
+    }
+
+    let kind: Kind
+
     @EnvironmentObject var viewModel: ProductsViewModel
 
     var body: some View {
-        NavigationLink(destination: CartView()) {
-            ZStack {
-                Image(systemName: "cart")
+        switch kind {
+        case .addRandomPokemon:
+            Image(systemName: "questionmark.circle")
+        case .cart:
+            NavigationLink(destination: CartView()) {
+                ZStack {
+                    Image(systemName: "cart")
 
-                let cartQuantity = viewModel.cartQuantity
+                    let cartQuantity = viewModel.cartQuantity
 
-                if cartQuantity > 0 {
-                    Text("\(cartQuantity)")
-                        .font(.caption)
-                        .foregroundColor(.white)
-                        .background(
-                            Circle()
-                                .fill(.red)
-                                .frame(width: 16, height: 16)
-                        )
-                        .position(x: 26, y: 20)
+                    if cartQuantity > 0 {
+                        Text("\(cartQuantity)")
+                            .font(.caption)
+                            .foregroundColor(.white)
+                            .background(
+                                Circle()
+                                    .fill(.red)
+                                    .frame(width: 16, height: 16)
+                            )
+                            .position(x: 26, y: 20)
+                    }
                 }
             }
+            .buttonStyle(.plain)
         }
-        .buttonStyle(.plain)
     }
 }
