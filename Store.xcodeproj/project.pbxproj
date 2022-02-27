@@ -10,6 +10,9 @@
 		D30ABFBB27BCCD0100AF0C71 /* NavBarViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ABFBA27BCCD0100AF0C71 /* NavBarViews.swift */; };
 		D30ABFBD27BCD07D00AF0C71 /* FindStoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ABFBC27BCD07D00AF0C71 /* FindStoresView.swift */; };
 		D30ABFC027BE1D5F00AF0C71 /* SequenceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30ABFBF27BE1D5F00AF0C71 /* SequenceExtension.swift */; };
+		D30DF5A927CBEB2300793AA3 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DF5A827CBEB2300793AA3 /* Fetcher.swift */; };
+		D30DF5AB27CC073A00793AA3 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DF5AA27CC073A00793AA3 /* DataExtension.swift */; };
+		D30DF5AD27CC07D900793AA3 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DF5AC27CC07D900793AA3 /* ArrayExtension.swift */; };
 		D36B503E27BC40C600F64A45 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B503D27BC40C600F64A45 /* Product.swift */; };
 		D36B504027BC4A0000F64A45 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B503F27BC4A0000F64A45 /* ProductsView.swift */; };
 		D36B504227BC4A6300F64A45 /* GridLayoutStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36B504127BC4A6300F64A45 /* GridLayoutStyle.swift */; };
@@ -27,6 +30,9 @@
 		D30ABFBA27BCCD0100AF0C71 /* NavBarViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarViews.swift; sourceTree = "<group>"; };
 		D30ABFBC27BCD07D00AF0C71 /* FindStoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindStoresView.swift; sourceTree = "<group>"; };
 		D30ABFBF27BE1D5F00AF0C71 /* SequenceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceExtension.swift; sourceTree = "<group>"; };
+		D30DF5A827CBEB2300793AA3 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
+		D30DF5AA27CC073A00793AA3 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		D30DF5AC27CC07D900793AA3 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		D36B503D27BC40C600F64A45 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		D36B503F27BC4A0000F64A45 /* ProductsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsView.swift; sourceTree = "<group>"; };
 		D36B504127BC4A6300F64A45 /* GridLayoutStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayoutStyle.swift; sourceTree = "<group>"; };
@@ -55,9 +61,19 @@
 		D30ABFBE27BE1D4D00AF0C71 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D30DF5AC27CC07D900793AA3 /* ArrayExtension.swift */,
+				D30DF5AA27CC073A00793AA3 /* DataExtension.swift */,
 				D30ABFBF27BE1D5F00AF0C71 /* SequenceExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D30DF5A727CBEB0500793AA3 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				D30DF5A827CBEB2300793AA3 /* Fetcher.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		D36B503B27BC401C00F64A45 /* Views */ = {
@@ -86,7 +102,7 @@
 		D38E5CB827BA133D005E2A45 = {
 			isa = PBXGroup;
 			children = (
-				D38E5CC327BA133D005E2A45 /* Products */,
+				D38E5CC327BA133D005E2A45 /* Store */,
 				D38E5CC227BA133D005E2A45 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,17 +115,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D38E5CC327BA133D005E2A45 /* Products */ = {
+		D38E5CC327BA133D005E2A45 /* Store */ = {
 			isa = PBXGroup;
 			children = (
 				D38E5CD427BA196A005E2A45 /* App */,
 				D30ABFBE27BE1D4D00AF0C71 /* Extensions */,
 				D36B503C27BC40BA00F64A45 /* Models */,
+				D30DF5A727CBEB0500793AA3 /* Utility */,
 				D38E5CD327BA14BB005E2A45 /* View Models */,
 				D36B503B27BC401C00F64A45 /* Views */,
 				D38E5CCA27BA133E005E2A45 /* Preview Content */,
 			);
-			path = Products;
+			path = Store;
 			sourceTree = "<group>";
 		};
 		D38E5CCA27BA133E005E2A45 /* Preview Content */ = {
@@ -180,7 +197,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D38E5CBC27BA133D005E2A45 /* Build configuration list for PBXProject "Products" */;
+			buildConfigurationList = D38E5CBC27BA133D005E2A45 /* Build configuration list for PBXProject "Store" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -215,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D30DF5AD27CC07D900793AA3 /* ArrayExtension.swift in Sources */,
 				D30ABFC027BE1D5F00AF0C71 /* SequenceExtension.swift in Sources */,
 				D38E5CD627BA197F005E2A45 /* ProductsViewModel.swift in Sources */,
 				D36B504427BC849800F64A45 /* ProductDetailView.swift in Sources */,
@@ -226,6 +244,8 @@
 				D30ABFBD27BCD07D00AF0C71 /* FindStoresView.swift in Sources */,
 				D36B504027BC4A0000F64A45 /* ProductsView.swift in Sources */,
 				D36B504627BC8DB600F64A45 /* CartView.swift in Sources */,
+				D30DF5AB27CC073A00793AA3 /* DataExtension.swift in Sources */,
+				D30DF5A927CBEB2300793AA3 /* Fetcher.swift in Sources */,
 				D36B504227BC4A6300F64A45 /* GridLayoutStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,7 +376,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Products/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Store/Preview Content\"";
 				DEVELOPMENT_TEAM = 7U69ZA82TN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -385,7 +405,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Products/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Store/Preview Content\"";
 				DEVELOPMENT_TEAM = 7U69ZA82TN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -410,7 +430,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D38E5CBC27BA133D005E2A45 /* Build configuration list for PBXProject "Products" */ = {
+		D38E5CBC27BA133D005E2A45 /* Build configuration list for PBXProject "Store" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D38E5CCD27BA133E005E2A45 /* Debug */,

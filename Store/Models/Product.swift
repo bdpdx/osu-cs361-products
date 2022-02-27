@@ -44,29 +44,22 @@ struct Product: Codable, Hashable, Identifiable {
             }
         }
 
-        let url = URL(string: "https://project13.us/cgi-bin/cs361.py?imageSet=pokemon")!
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { data, response, e in
-            let result: Result<[Product], Error>
+        Fetcher.fetch(
+            "https://project13.us/cgi-bin/cs361.py?imageSet=pokemon",
+            into: ProductsWrapper.self,
+            completion: { r in
+                let result: Result<[Product], Error>
 
-            if let error = e {
-                result = .failure(error)
-            } else if let data = data {
-                do {
-                    let wrapper = try JSONDecoder().decode(ProductsWrapper.self, from: data)
-                    result = .success(wrapper.products)
-                } catch {
-                    print("json decoding error \(error)")
-
+                switch r {
+                case .failure(let error):
                     result = .failure(error)
+                case .success(let wrapper):
+                    result = .success(wrapper.products)
                 }
-            } else {
-                result = .failure(Errno.noData)
-            }
 
-            completion(result)
-        }
-        task.resume()
+                completion(result)
+            }
+        )
     }
 }
 

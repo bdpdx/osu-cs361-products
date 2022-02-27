@@ -8,12 +8,14 @@
 import Foundation
 
 final class ProductsViewModel: ObservableObject {
+    typealias Quantity = Int
+
     struct CartItem: Hashable {
         let product: Product
-        let quantity: Int
+        let quantity: Quantity
     }
 
-    @Published var cart = [Product: Int]()
+    @Published var cart = [Product: Quantity]()
     @Published var isUserOver21 = false
     @Published var isUserAPokemonFan = false
     @Published var products = [Product]()

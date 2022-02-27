@@ -15,18 +15,22 @@ struct ProductsView: View {
     }
 
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            LazyVGrid(columns: items) {
-                ForEach(viewModel.products, id: \.id) { product in
-                    NavigationLink(destination: ProductDetailView(product: product)) {
-                        VStack {
-                            AsyncImage(url: product.imageURL)
-                                .frame(width: 120, height: 120)
+        VStack {
+            Text("Turn this into a search bar")
 
-                            Text(product.name)
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVGrid(columns: items) {
+                    ForEach(viewModel.products, id: \.id) { product in
+                        NavigationLink(destination: ProductDetailView(product: product)) {
+                            VStack {
+                                AsyncImage(url: product.imageURL)
+                                    .frame(width: 120, height: 120)
+
+                                Text(product.name)
+                            }
                         }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
             }
         }

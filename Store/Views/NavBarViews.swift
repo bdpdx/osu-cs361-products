@@ -31,7 +31,11 @@ struct NavBarTrailingView: View {
     var body: some View {
         switch kind {
         case .addRandomPokemon:
-            Image(systemName: "questionmark.circle")
+            Button {
+                addRandomPokemonToCart()
+            } label: {
+                Image(systemName: "questionmark.circle")
+            }
         case .cart:
             NavigationLink(destination: CartView()) {
                 ZStack {
@@ -53,6 +57,30 @@ struct NavBarTrailingView: View {
                 }
             }
             .buttonStyle(.plain)
+        }
+    }
+
+    private func addRandomPokemonToCart() {
+        let maxValue = viewModel.products.count - 1
+
+        Fetcher.fetch("https://project13.us/cgi-bin/rng_service.py?minValue=0&maxValue=\(maxValue)") { result in
+            DispatchQueue.main.async {
+                if
+                    case .success(let data) = result,
+                    let index = Int(data.utf8.trimmingCharacters(in: .whitespacesAndNewlines))
+                {
+                    DispatchQueue.main.async {
+                        guard let product = viewModel.products.element(at: index) else {
+                            return
+                        }
+                        guard !viewModel.isProductInCart(product) else {
+                            addRandomPokemonToCart()
+                            return
+                        }
+                        viewModel.addToCart(product)
+                    }
+                }
+            }
         }
     }
 }
