@@ -16,8 +16,6 @@ struct ProductsView: View {
 
     var body: some View {
         VStack {
-            Text("Turn this into a search bar")
-
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVGrid(columns: items) {
                     ForEach(viewModel.products, id: \.id) { product in

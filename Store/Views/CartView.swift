@@ -56,7 +56,16 @@ struct CartView: View {
 
     @EnvironmentObject var viewModel: ProductsViewModel
 
-    @State private var isPurchasedAlertVisible = false
+    private struct AlertIdentifier: Identifiable {
+        enum Kind {
+            case confirm
+            case success
+        }
+
+        var id: Kind
+    }
+
+    @State private var visibleAlert: AlertIdentifier?
 
     var body: some View {
         Group {
@@ -67,7 +76,7 @@ struct CartView: View {
                     }
 
                     Button {
-                        isPurchasedAlertVisible.toggle()
+                        visibleAlert = AlertIdentifier(id: .confirm)
                     } label: {
                         Text("Buy Now!")
                             .frame(width: 180, height: 60)
@@ -79,15 +88,30 @@ struct CartView: View {
                     .buttonStyle(.borderless)
                     .padding(.bottom, 20)
                 }
-                .alert(isPresented: $isPurchasedAlertVisible, content: {
-                    Alert(
-                        title: Text("Success!"),
-                        message: Text("Your items have been purchased."),
-                        dismissButton: .default(Text("OK"), action: {
-                            viewModel.clearCart()
-                            presentationMode.wrappedValue.dismiss()
-                        }))
-                })
+                .alert(item: $visibleAlert) { alert in
+                    switch alert.id {
+                    case .confirm:
+                        let messageSuffix = viewModel.cartQuantity == 1 ? "this item" : "these items"
+
+                        return Alert(
+                            title: Text("Confirm Purchase"),
+                            message: Text("Are you sure you'd like to buy \(messageSuffix)?"),
+                            primaryButton: .destructive(Text("Cancel"), action: {
+                                visibleAlert = nil
+                            }),
+                            secondaryButton: .default(Text("OK"), action: {
+                                visibleAlert = AlertIdentifier(id: .success)
+                            }))
+                    case .success:
+                        return Alert(
+                            title: Text("Success!"),
+                            message: Text("Your items have been purchased."),
+                            dismissButton: .default(Text("OK"), action: {
+                                viewModel.clearCart()
+                                presentationMode.wrappedValue.dismiss()
+                            }))
+                    }
+                }
             } else {
                 Text("Cart is Empty")
             }

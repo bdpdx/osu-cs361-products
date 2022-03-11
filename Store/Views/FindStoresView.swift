@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// TODO: this is future feature work
 struct FindStoresView: View {
     var body: some View {
         Text("Hello")
